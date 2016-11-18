@@ -1,0 +1,2 @@
+3.0
+{'neobundle.vim': {'checked_time': 1477074393, 'installed_uri': 'https://github.com/Shougo/neobundle.vim.git', 'installed_path': '/home/thomas.k1/.vim/bundle/neobundle.vim', 'revisions': {}, 'updated_time': '1476488244'}, 'tender': {'checked_time': 1477074531, 'installed_uri': 'https://github.com/jacoborus/tender.git', 'installed_path': '/home/thomas.k1/.vim/bundle/tender', 'revisions': {'1475286621': '98f673b42d190686eecae38a75ce45bfb8132c0c'}, 'updated_time': '1475286621'}}

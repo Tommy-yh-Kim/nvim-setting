@@ -2,12 +2,6 @@
 " Switch syntax highlighting on, when the terminal has colors
 syntax enable
 
-set t_Co=256
-let g:solarized_termcolors=256
-let g:Tomorrow_termcolors=256
-let g:beauty256_termcolors=256
-
-
 " Use vim, not vi api
 set nocompatible
 
@@ -120,17 +114,19 @@ let g:netrw_liststyle=3
 "autocmd BufWinEnter * highlight ColorColumn ctermbg=darkred
 "set colorcolumn=80
 " }}}
+"
 
 let mapleader = "'"
-
 
 if !has('nvim')
   set ttymouse=xterm2
 endif
 
 set mouse=r
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-set termguicolors
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
 
 " Plugins {{{
 execute pathogen#infect()
@@ -138,7 +134,9 @@ filetype plugin indent on " required by Pathogen Plugin Manager
 
 " Theme
 "set background=light
-colorscheme Tomorrow-Night
+colorscheme solarized8_dark_low
+"colorscheme solarized8_light_flat
+"colorscheme Tomorrow-Night
 
 let g:nerdtree_tabs_open_on_console_startup=1
 
@@ -167,6 +165,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Airline (status line)
 let g:airline_powerline_fonts = 1
+"let g:airline_left_sep=''
+"let g:airline_right_sep=''
 
 " Gist authorisation settings
 let g:github_user = $GITHUB_USER
@@ -234,7 +234,6 @@ nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
-
 
 " Command to use sudo when needed
 cmap w!! %!sudo tee > /dev/null %
@@ -350,10 +349,10 @@ autocmd BufRead * setlocal foldmethod=marker
 autocmd BufRead * normal zM
 
 " Rainbow parenthesis always on!
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+autocmd VimEnter * RainbowParenthesesToggle
+autocmd Syntax * RainbowParenthesesLoadRound
+autocmd Syntax * RainbowParenthesesLoadSquare
+autocmd Syntax * RainbowParenthesesLoadBraces
 
 " Reset spelling colours when reading a new buffer
 " This works around an issue where the colorscheme is changed by .local.vimrc
@@ -376,3 +375,13 @@ fun! SetDiffColors()
 endfun
 autocmd FilterWritePre * call SetDiffColors()
 " }}}
+ " Note: Skip initialization for vim-tiny or vim-small.
+ if 0 | endif
+
+ if &compatible
+   set nocompatible               " Be iMproved
+ endif
+
+
+ " Required:
+ filetype plugin indent on
